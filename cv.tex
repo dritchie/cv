@@ -1,0 +1,162 @@
+% LaTeX resume using res.cls
+\documentclass[line,margin]{res} 
+\usepackage{cite}
+\usepackage{url}
+%\usepackage{helvetica} % uses helvetica postscript font (download helvetica.sty)
+%\usepackage{newcent}   % uses new century schoolbook postscript font 
+
+%Mess with margins
+%Should be of the form:
+%
+%\addtolength{\textwidth}{ain}
+%\addtolength{\hoffset}{-bin}
+%\addtolength{\textheight}{cin}
+%\addtolength{\voffset}{-cin}
+%
+%where a = 2b
+
+%\addtolength{\textwidth}{0.8in}
+%\addtolength{\hoffset}{-0.4in}
+\addtolength{\textheight}{0.2in}
+\addtolength{\voffset}{-0.2in}
+
+\begin{document}
+
+\name{Daniel Ritchie}
+% \address can be used twice to have two lines of address
+\address{dritchie@stanford.edu | \url{stanford.edu/~dritchie}}
+ 
+\begin{resume}
+ 
+\section{EDUCATION}
+\begin{ncolumn}{3}
+{\sl Stanford University} & {\sl Stanford University} & {\sl UC Berkeley} \\
+Ph.D. Computer Science & M.S. Computer Science & B.A. Computer Science \\
+In Progress & April 2013 & May 2010, GPA: 4.00
+\end{ncolumn}
+
+\section{PUBLICATIONS}
+{\bf Daniel Ritchie}, Ben Mildenhall, Noah D. Goodman, and Pat Hanrahan. ``Controlling Procedural Modeling Programs with Stochastically-Ordered Sequential Monte Carlo". {\sl SIGGRAPH 2015 (to appear)}.
+\\ \\
+{\bf Daniel Ritchie}, Sharon Lin, Noah D. Goodman, and Pat Hanrahan. ``Generating Design Suggestions under Tight Constraints with Gradient-based Probabilistic Programming". {\sl Eurographics 2015 (Best paper, honorable mention)}.
+\\ \\
+{\bf Daniel Ritchie}. ``Quicksand: A Lightweight Embedding of Probabilistic Programming for Procedural Modeling and Design". {\sl 3rd NIPS Workshop on Probabilistic Programming}.
+\\ \\
+Zach Devito, {\bf Daniel Ritchie}, Matthew Fisher, Alex Aiken, and Pat Hanrahan. ``First-class Runtime Generation of High-performance Types using Exotypes". {\sl PLDI 2014}.
+\\ \\
+Sharon Lin, {\bf Daniel Ritchie}, Matthew Fisher, and Pat Hanrahan. ``Probabilistic Color-by-Numbers: Suggesting Pattern Colorizations Using Factor Graphs". {\sl SIGGRAPH 2013}.
+\\ \\
+Matthew Fisher, {\bf Daniel Ritchie}, Manolis Savva, Thomas Funkhouser, and Pat Hanrahan. ``Example-based Synthesis of 3D Object Arrangements". {\sl SIGGRAPH Asia 2012}.
+\\ \\
+{\bf Daniel Ritchie}, Ankita Arvind Kejriwal, and Scott R. Klemmer.``d.tour: Style-based Exploration of Design Example Galleries". {\sl UIST 2011}.
+\\ \\
+Martin Wicke, {\bf Daniel Ritchie}, Bryan M. Klingner, Sebastian Burke, Jonathan R. Shewchuk, and James F. O'Brien.``Dynamic Local Remeshing for Elastoplastic Simulation". {\sl SIGGRAPH 2010}.
+\\ \\
+Nuttapong Chentanez, Ron Alterovitz, {\bf Daniel Ritchie}, Lita Cho, Kris K. Hauser, Ken Goldberg, Jonathan R. Shewchuk, and James F. O'Brien.``Interactive Simulation of Surgical Needle Insertion and Steering". {\sl SIGGRAPH 2009}. 
+ 
+\section{RELEVANT COURSEWORK}
+\begin{ncolumn}{2}
+{\sl Stanford} & {\sl UC Berkeley} \\
+CS 228: Probabilistic Graphical Models & CS 294: Advanced Computer Graphics {\bf A+} \\
+CS 242: Programming Languages & CS 294: Physically Based Animation {\bf A} \\
+CS 154: Automata \& Complexity & CS 194: Advanced Digital Animation {\bf A+} \\
+CS 144: Computer Networks & CS 184: Computer Graphics {\bf A+} \\
+ & CS 160: User Interfaces {\bf A} \\
+ & CS 170: Algorithms {\bf A+} \\
+ & CS 188: Artificial Intelligence {\bf A+} \\
+ & EE 127A: Optimization Models {\bf A+}
+\end{ncolumn}
+
+\section{SKILLS}
+\begin{description}
+\item [{\sl Operating Systems:}] Windows, *nix, Mac OS X
+\item [{\sl Languages:}] C/C++, Python, Java,  Scala, Lua, C\#, HTML/CSS, Javascript, PHP, Scheme
+\item [{\sl Applications:}]  Maya, Premiere, Photoshop, Visual Studio
+\item [{\sl Miscellaneous:}] OpenGL, Git, Subversion
+\end{description}
+
+\section{EXPERIENCE}
+
+% Control how position information is displayed
+\begin{format}
+\employer{l}\location{r}\\
+\title{l}\dates{r}\\
+\body\\
+\end{format}
+
+\employer{Stanford CS Department}
+\title{{\sl CS 348b Course Assistant}}
+\dates{April 2014 -- June 2014}
+\location{Stanford, CA}
+\begin{position}
+Held office hours and graded assignments for Stanford's advanced image synthesis course.
+\end{position}
+
+\employer{Stanford CS Department}
+\title{{\sl CS 148 Course Assistant}}
+\dates{September 2011 -- December 2011}
+\location{Stanford, CA}
+\begin{position}
+Held office hours, designed assignments, graded exams, and gave guest lectures for Stanford's introductory graphics course.
+\end{position}
+
+\employer{Adobe Systems}
+\title{{\sl Creative Technologies Lab Intern}}
+\dates{June 2011 -- September 2011}
+\location{San Francisco, CA}
+\begin{position}
+Researching creativity support tools for artists and designers.
+\end{position}
+
+\employer{UC Berkeley EECS Department}
+\title{{\sl CS 184 Teaching Assistant}}
+\dates{August 2009 -- May 2010}
+\location{Berkeley, CA}
+\begin{position}
+Led student discussion sections for UC Berkeley's undergraduate graphics course.
+\end{position}
+
+\employer{Pixar Animation Studios}
+\title{{\sl Technical Director Intern}}
+\dates{June 2009 -- August 2009}
+\location{Emeryville, CA}
+\begin{position}
+Developed tools and content for the short ``Day and Night" and other studio films.
+\end{position}
+
+\employer{UC Berkeley Undergrad. Graphics Group}
+\title{{\sl Facilitator}}
+\dates{December 2008 -- May 2010}
+\location{Berkeley, CA}
+\begin{position}
+Taught fellow students the principles of 3D animation with Maya.
+\end{position}
+
+\employer{Hewlett-Packard}
+\title{{\sl Software Intern}}
+\dates{June 2008 -- August 2008}
+\location{Roseville, CA}
+\begin{position}
+Prototyped an application for print authorization using Microsoft Active Directory.
+\end{position}
+
+%\section{PROJECTS}
+
+\section{AWARDS AND HONORS}
+Stanford Graduate Fellowship \\ 
+UC Berkeley EECS Departmental Citation (2010) \\
+UC Berkeley Computer Science Highest Achievement Award (2010) \\
+CRA Outstanding Undergraduate Researcher - Honorable Mention (2010) \\
+UC Berkeley Edward Frank Kraft Scholarship \\
+National Merit Scholarship 
+
+\end{resume}
+
+\end{document}
+
+
+
+
+
+
+
