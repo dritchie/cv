@@ -1,5 +1,7 @@
 cv.pdf
+research.pdf
 *.aux
 *.log
 *.synctex.gz
 *.fdb_latexmk
+*.out
