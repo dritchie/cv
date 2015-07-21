@@ -5,3 +5,5 @@ research.pdf
 *.synctex.gz
 *.fdb_latexmk
 *.out
+*.bbl
+*.blg
