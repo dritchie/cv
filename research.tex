@@ -49,11 +49,20 @@ In procedural modeling, content creators write programs that pseudo-randomly gen
 
 Bayesian probabilistic inference provides a well-studied conceptual mechanism for this kind of inversion: the forward recipe serves as a generative prior distribution, and the desired properties can be encouraged via a likelihood function. Probabilistic programs are a natural choice for representing these types of distributions. They are a Turing-complete, universal family of probabilistic models, so they can capture the highly structured, recursive, mixed-continuous-discrete nature of many procedural models~\cite{Church}. They are also human-readable and human-writable and require little-to-no special expertise in probabilistic inference to author or understand.
 
-Unfortunately, the expressiveness and familiarity of probabilistic programs comes at a cost: inference on such complex programs is often intractable. We must resort to approximate methods that converge slowly, if at all. Thus, most of my work has focused on improving the reliability and runtime efficiency of probabilistic programming inference, with a particular eye towards procedural modeling applications in computer graphics. My research in this space has involved both algorithmic work (increasing the statistical efficiency of inference through new or improved algorithms) as well as systems work (making existing inference algorithms more computationally efficient).
+Unfortunately, the expressiveness of probabilistic programs comes at a cost: inference on such complex programs is often intractable. We must resort to approximate methods that converge slowly, if at all. Thus, most of my work has focused on improving the reliability and runtime efficiency of probabilistic programming inference, with a particular eye towards procedural modeling applications in computer graphics. My research in this space has involved both algorithmic work (increasing the statistical efficiency of inference through new or improved algorithms) as well as systems work (making existing inference algorithms more computationally efficient).
+
+
+% Following sections are all structured as: problem/opportunity, solution, result/impact
 
 \section*{Eliminating redundant computation}
 
-Lightweight MH as the main workhorse of PPL inference, its desirable properties. Unfortunately slowness / `quadratic' scaling due to trace replay overhead. Intepreters such as Venture don't have this problem. Can we get the same behavior in a lightweight system? Yes, C3. Give basic idea. Talk about results. Play up procedural modeling speedup, but also mention how useful it is for Bayesian data analysis in latent variable models.
+The `Lightweight MH' variant of the Metropolis Hastings algorithm is a popular inferece method for probabilistic programs~\cite{Lightweight}. It is easy to implement, 
+
+Lightweight MH as the main workhorse of PPL inference, its desirable properties. Unfortunately slowness / `quadratic' scaling due to trace replay overhead. Intepreters such as Venture don't have this problem. Can we get the same behavior in a lightweight system?
+
+Yes, C3. Give basic idea.
+
+Talk about results. Play up procedural modeling speedup, but also mention how useful it is for Bayesian data analysis in latent variable models.
 
 \section*{Dealing with tight constraints}
 
