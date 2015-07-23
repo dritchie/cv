@@ -92,12 +92,11 @@ I have shown that HMC successfully generates design suggestions in two different
 \vspace{1em}
 \begin{figure}[h!]
 	\centering
-	% \setlength{\tabcolsep}{2pt}
 	\begin{tabular}{ccc|c}
-		\raisebox{-.5\height}{\includegraphics[width=0.23\linewidth]{figs/hmc/hmc_1.png}} &
-		\raisebox{-.5\height}{\includegraphics[width=0.23\linewidth]{figs/hmc/hmc_2.png}} &
-		\raisebox{-.5\height}{\includegraphics[width=0.23\linewidth]{figs/hmc/hmc_3.png}} &
-		\raisebox{-.5\height}{\includegraphics[width=0.23\linewidth]{figs/hmc/mh.png}} \\
+		\includegraphics[width=0.23\linewidth]{figs/hmc/hmc_1.png} &
+		\includegraphics[width=0.23\linewidth]{figs/hmc/hmc_2.png} &
+		\includegraphics[width=0.23\linewidth]{figs/hmc/hmc_3.png} &
+		\includegraphics[width=0.23\linewidth]{figs/hmc/mh.png} \\
 		\multicolumn{3}{c}{{\helvetica \scriptsize{HMC Samples}}} & {\helvetica \scriptsize{MH Sample}}
 	\end{tabular}
 \end{figure}
@@ -106,16 +105,28 @@ I have shown that HMC successfully generates design suggestions in two different
 
 \section*{Handling branching structure with SOSMC}
 
+HMC helps with tight constraints over continuous vars, but there's another issue: tight constraints involving structure change. Have to say what structure change is, give examples (trees, probably). It's a harder problem: not only can we not explore, but these structural local maxima can keep us from reaching even a single good solution. Add-ons to MH can help, such as LARJ [CITE?], but at the cost of extra computation and complexity (param tuning). Ideal would be a simpler inference algorithm that sidesteps this problem entirely.
 
+SMC as a candidate (inspired by recent work on PPL SMC [cite?]). Describe what SMC does. Say why it might be good: gives feedback as the model is being generated, so it doesn't get stuck with a poor complete structure. SMC developed with linear time series models in mind, but we need it to support models with structured branching. Need to linearize call tree, and I show that always using depth-first order is bad. My insight is to randomly choose the order, resulting in SOSMC. Permits a very simple implementation using a stochastic variant of the future construct from parallel programming.
 
-Motivate by talking about how MCMC gets stuck in structural local maxima, how SMC could avoid that problem entirely. Inspired by recent work adapting SMC to probabilistic programs. Have to handle `non-linear' programs with structured branching, as well as transdimensionality. Have to linearize call tree. Linearization affects SMC performance. Development of SOSMC. Stochastic future. Cool results.
+For recursively branching procedural models, SOSMC often converges significantly faster than MH. Show tree example from talk where MH gets stuck in local maximum but SOSMC does just fine.
 
+\vspace{1em}
+\begin{figure}[h!]
+	\centering
+	\begin{tabular}{ccc}
+		\includegraphics[width=0.30\linewidth]{figs/sosmc/target.png} &
+		\includegraphics[width=0.30\linewidth]{figs/sosmc/sosmc.png} &
+		\includegraphics[width=0.30\linewidth]{figs/sosmc/mh.png} \\
+		{\helvetica \scriptsize{Target}} & {\helvetica \scriptsize{SOSMC (22.47s)}} & {\helvetica \scriptsize{MH (22.47s)}}
+	\end{tabular}
+\end{figure}
 
 
 
 \section*{Future research agenda}
 
-Opening statement about how PPLs for design is a field in its infancy, lots of open sky to explore. Opportunities to integrate insights from both AI/ML and PL/compilers into computer graphics and design tools is very exciting.
+Opening statement about how PPLs for design is a field in its infancy, lots of open sky to explore. Opportunities to integrate insights from both AI/ML and PL/compilers into computer graphics and design tools is very exciting (mention specifically how PL insights enabled SOSMC).
 
 Making inference more real-time (mention some cool examples of real-time constrained content generation that we'd like to achieve). Talk about amortized inference as an idea. Specifically talk about variational inference as a mechanism for achieving it. Mention/cite recent work in using neural networks to build recognition models. But need further work to make these work with structure-changing models, and with constraints not derived from data.
 
