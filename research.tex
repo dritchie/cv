@@ -60,7 +60,20 @@ The `Lightweight MH' variant of the Metropolis Hastings algorithm is a popular t
 
 To get the best of both worlds---efficient, incrementalized proposals in a lightweight, embedded system---I developed a new MH implementation technique called C3~\cite{C3}. C3 leverages two insights. First, it transforms programs into continuation passing style (CPS): this makes continuations available at every point in the program, so execution can resume from anywhere. Second, C3 caches the receiver, inputs, and output of each function call, since many calls can be skipped when these quantities have not changed.
 
-Talk about results. Play up procedural modeling speedup, but also mention how useful it is for Bayesian data analysis in latent variable models.
+C3 significantly accelerates MH proposals. In the procedural modeling example below, where a tree-generating program is encouraged to take the target shape on the left, C3 runs nearly 10 times faster than Lightweight MH. Its two components, caching and CPS, work synergistically, delivering greater speedups when used together than the sum of their individual contributions. C3 also works well for many latent variable models in Bayesian data analysis, delivering 20-100x speedups on hidden Markov models, Gaussian mixtures, topic models, and hierarchical regression models.
+\vspace{1em}
+\newcommand*{\helvetica}{\fontfamily{phv}\selectfont}
+\begin{figure*}[h!]
+\centering
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{ccc}
+	\includegraphics[width=0.25\linewidth]{figs/c3/target} &
+	\includegraphics[width=0.25\linewidth]{figs/c3/result} &
+	\shortstack{ \includegraphics[width=0.5\linewidth]{figs/c3/procmod_time} \\ \includegraphics[width=0.5\linewidth]{figs/c3/procmod_throughput} } \\
+	{\helvetica \scriptsize{Target}} & {\helvetica \scriptsize{Output}} & 
+\end{tabular}
+\label{fig:c3_procmod}
+\end{figure*}
 
 \section*{Dealing with tight constraints using HMC}
 
