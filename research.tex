@@ -4,7 +4,7 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[
-11pt, % Main document font size
+10pt, % Main document font size
 a4paper, % Paper type, use 'letterpaper' for US Letter paper
 oneside, % One page layout (no page indentation)
 %twoside, % Two page layout (page indentation for binding and different headers)
@@ -15,6 +15,9 @@ BCOR5mm, % Binding correction
 \input{structure.tex} % Include the structure.tex file which specified the document structure and layout
 
 \hyphenation{Fortran hy-phen-ation} % Specify custom hyphenation points in words with dashes where you would like hyphenation to occur, or alternatively, don't put any dashes in a word to stop hyphenation altogether
+
+% Switch font to helvectica (enclose in curly braces for local scope)
+\newcommand*{\helvetica}{\fontfamily{phv}\selectfont}
 
 %----------------------------------------------------------------------------------------
 %	TITLE AND AUTHOR(S)
@@ -52,18 +55,20 @@ Bayesian probabilistic inference provides a well-studied conceptual mechanism fo
 Unfortunately, the expressiveness of probabilistic programs comes at a cost: inference on such complex programs is often intractable. We must resort to approximate methods that converge slowly, if at all. Thus, most of my work has focused on improving the reliability and runtime efficiency of probabilistic programming inference, with a particular eye towards procedural modeling applications in computer graphics. My research in this space has involved both algorithmic work (increasing the statistical efficiency of inference through new or improved algorithms) as well as systems work (making existing inference algorithms more computationally efficient).
 
 
+
+
 % Following sections are all structured as: problem/opportunity, solution, result/impact
 
 \section*{Eliminating redundant computation with C3}
 
-The `Lightweight MH' variant of the Metropolis Hastings algorithm is a popular technique for implementing probabilistic programming inference~\cite{Lightweight}. It is easy to implement and can be embedded in an existing deterministic language, rather than requiring its own specialized interpreter or compiler. And it operates on arbitrary programs, including the complex programs found in procedural modeling and design applications. Unfortunately, it is also inefficient: every Metropolis Hastings proposal triggers a complete re-execution of the program, despite the fact that the changed variable often only affects a small subset of the program's execution trace. Probabilistic languages that run on custom interpreters often exploit this fact for faster inference, but they are complicated to implement and do not integrate as readily with existing deterministic code.
+The `Lightweight MH' variant of the Metropolis Hastings algorithm is a popular technique for implementing probabilistic programming inference~\cite{Lightweight}. It is easy to implement and can be embedded in an existing deterministic language, rather than requiring its own specialized interpreter or compiler. And it operates on arbitrary programs, including the complex programs found in procedural modeling and design applications. Unfortunately, it is also inefficient: every Metropolis Hastings proposal triggers a complete re-execution of the program, despite the fact that the proposal often only changes a small subset of the program's execution trace. Probabilistic languages that run on custom interpreters often exploit this fact for faster inference, but they are complicated to implement and do not integrate as readily with existing deterministic code.
 
 To get the best of both worlds---efficient, incrementalized proposals in a lightweight, embedded system---I developed a new MH implementation technique called C3~\cite{C3}. C3 leverages two insights. First, it transforms programs into continuation passing style (CPS): this makes continuations available at every point in the program, so execution can resume from anywhere. Second, C3 caches the receiver, inputs, and output of each function call, since many calls can be skipped when these quantities have not changed.
 
-C3 significantly accelerates MH proposals. In the procedural modeling example below, where a tree-generating program is encouraged to take the target shape on the left, C3 runs nearly 10 times faster than Lightweight MH. Its two components, caching and CPS, work synergistically, delivering greater speedups when used together than the sum of their individual contributions. C3 also works well for many latent variable models in Bayesian data analysis, delivering 20-100x speedups on hidden Markov models, Gaussian mixtures, topic models, and hierarchical regression models.
+C3 significantly accelerates MH proposals. In the procedural modeling example below, where a tree-generating program is encouraged to take the target shape on the left, C3 runs nearly 10 times faster than Lightweight MH. Its two components, caching and CPS, work synergistically, delivering greater speedups when used together than the sum of their individual contributions. C3 also works well for many latent variable models in Bayesian data analysis, delivering 20-100x speedups on hidden Markov models, Gaussian mixtures, topic models, and hierarchical regression models. C3 is publically available as the \texttt{IncrementalMH} inference method in the open-source WebPPL programming language~\cite{WebPPL}.
+
 \vspace{1em}
-\newcommand*{\helvetica}{\fontfamily{phv}\selectfont}
-\begin{figure*}[h!]
+\begin{figure}[h!]
 \centering
 \setlength{\tabcolsep}{2pt}
 \begin{tabular}{ccc}
@@ -72,21 +77,43 @@ C3 significantly accelerates MH proposals. In the procedural modeling example be
 	\shortstack{ \includegraphics[width=0.5\linewidth]{figs/c3/procmod_time} \\ \includegraphics[width=0.5\linewidth]{figs/c3/procmod_throughput} } \\
 	{\helvetica \scriptsize{Target}} & {\helvetica \scriptsize{Output}} & 
 \end{tabular}
-\label{fig:c3_procmod}
-\end{figure*}
+\end{figure}
+
+
 
 \section*{Dealing with tight constraints using HMC}
 
-Problems with single-site MH. Connection between tight constraints and data-induced strong variable coupling. HMC, statistical efficiency gain.
+Lightweight MH is a `single-site' Metropolis Hastings algorithm: it proposes changes to one random variable at a time. This strategy can break down when faced with likelihoods that induce tight constraints between multiple variables. For example, constraining the interior volume of a procedurally-generated bottle couples every random variable in the program. Changing one variable without also performing a corresponding change to the others leads to a change in volume and thus a drop in likelihood, so Lightweight MH struggles in these situations. Some programs admit problem-specific multi-variable proposal strategies to get around this issue: in the bottle example, cross-sections of the shape could be carefully adjusted in pairs to preserve volume. But these strategies can be difficult to discover and design, and they do not generalize to new problems.
 
-Also talk about how we implemented it in Quicksand, and how that provides computational efficiency, too.
+In my work, I recommend using Hamiltonian Monte Carlo (HMC) in such situations instead~\cite{GraphicsHMC}. HMC simultaneously proposes changes to multiple continuous variables; these proposals stochastically follow the probability \emph{gradient}, increasing the chance that they will result in a high-probability state. The necessary gradient can be derived computationally using automatic differentiation, so it need not be written explicitly by the programmer. These properties make HMC an attractive, general-purpose candidate for inference in tightly-constrained procedural models.
+
+I have shown that HMC successfully generates design suggestions in two different domains: constrained vector art coloring and stable stacking structures. The figure below shows several stable variations on a complex arch-like structure that HMC discovered, despite the tight global constraint introduced by encouraging structures to be in static equilibrium (Left). By contrast, Lightweight MH quickly becomes stuck in the first stable configuration it finds (Right). The source code for these examples is available online, and the underlying HMC implementation is part of Quicksand, my open-source system for high-performance probabilistic programming~\cite{Quicksand}.
+
+\vspace{1em}
+\begin{figure}[h!]
+	\centering
+	% \setlength{\tabcolsep}{2pt}
+	\begin{tabular}{ccc|c}
+		\raisebox{-.5\height}{\includegraphics[width=0.23\linewidth]{figs/hmc/hmc_1.png}} &
+		\raisebox{-.5\height}{\includegraphics[width=0.23\linewidth]{figs/hmc/hmc_2.png}} &
+		\raisebox{-.5\height}{\includegraphics[width=0.23\linewidth]{figs/hmc/hmc_3.png}} &
+		\raisebox{-.5\height}{\includegraphics[width=0.23\linewidth]{figs/hmc/mh.png}} \\
+		\multicolumn{3}{c}{{\helvetica \scriptsize{HMC Samples}}} & {\helvetica \scriptsize{MH Sample}}
+	\end{tabular}
+\end{figure}
+
+
 
 \section*{Handling branching structure with SOSMC}
 
 Motivate by talking about how MCMC gets stuck in structural local maxima, how SMC could avoid that problem entirely. Inspired by recent work adapting SMC to probabilistic programs. Have to handle `non-linear' programs with structured branching, as well as transdimensionality. Have to linearize call tree. Linearization affects SMC performance. Development of SOSMC. Stochastic future. Cool results.
 
 
+
+
 \section*{Future research agenda}
+
+Opening statement about how PPLs for design is a field in its infancy, lots of open sky to explore. Opportunities to integrate insights from both AI/ML and PL/compilers into computer graphics and design tools is very exciting.
 
 Making inference more real-time (mention some cool examples of real-time constrained content generation that we'd like to achieve). Talk about amortized inference as an idea. Specifically talk about variational inference as a mechanism for achieving it. Mention/cite recent work in using neural networks to build recognition models. But need further work to make these work with structure-changing models, and with constraints not derived from data.
 
@@ -100,3 +127,5 @@ Exploring connections to nearby disciplines. Procedural models as structured pri
 
 
 \end{document}
+
+
