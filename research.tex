@@ -45,7 +45,7 @@ BCOR5mm, % Binding correction
 
 My research focuses on solving complex procedural modeling and design problems using probabilistic programming. My work is interdisciplinary, sitting at the intersection of computer graphics, artificial intelligence, and programming languages. I believe in developing general-purpose solutions, rather than specialized fixes for one problem or application domain. This means that on the way to solving computer graphics problems, my work often leads to systems and algorithms that have broader impact for probabilistic programming and probabilistic inference in general.
 
-In procedural modeling, content creators write programs that pseudo-randomly generate 3D graphics content, such as trees, vehicles, or entire environments. This approach to content creation scales to large amounts of diverse content without extensive human effort, and it is becoming more important as the virtual worlds of films, games, and simulations grow larger and more detailed. Traditional procedural modeling tools operate via forward reasoning: the user writes a step-by-step recipe for generating content, such as a 3D model for a house. However, detailed, realistic content that can be interacted with must also satisfy properties that are difficult to guarantee constructively—for example, the house models should be structurally stable. Satisfying such conditions seems to require \emph{inverse} reasoning, working backwards from the desired result.
+In procedural modeling and design, content creators write programs that pseudo-randomly generate visual content, such as 3D models, websites, or arrangements of furniture. This approach allows designers to rapidly create and explore alternative design possibilities. It also scales to creating large amounts of diverse content without extensive human effort, which is becoming more important as the virtual worlds of films, games, and simulations grow larger and more detailed. Traditional procedural modeling tools operate via forward reasoning: the user writes a step-by-step recipe for generating content, such as a 3D model for a house. However, detailed, realistic content must also satisfy properties that are difficult to guarantee constructively---for example, the house models should be structurally stable. Satisfying such conditions seems to require \emph{inverse} reasoning, working backwards from the desired result.
 
 Bayesian probabilistic inference provides a well-studied conceptual mechanism for this kind of inversion: the forward recipe serves as a generative prior distribution, and the desired properties can be encouraged via a likelihood function. Probabilistic programs are a natural choice for representing these types of distributions. They are a Turing-complete, universal family of probabilistic models, so they can capture the highly structured, recursive, mixed-continuous-discrete nature of many procedural models~\cite{Church}. They are also human-readable and human-writable and require little-to-no special expertise in probabilistic inference to author or understand.
 
@@ -54,23 +54,21 @@ Unfortunately, the expressiveness of probabilistic programs comes at a cost: inf
 
 % Following sections are all structured as: problem/opportunity, solution, result/impact
 
-\section*{Eliminating redundant computation}
+\section*{Eliminating redundant computation with C3}
 
-The `Lightweight MH' variant of the Metropolis Hastings algorithm is a popular inferece method for probabilistic programs~\cite{Lightweight}. It is easy to implement, 
+The `Lightweight MH' variant of the Metropolis Hastings algorithm is a popular technique for implementing probabilistic programming inference~\cite{Lightweight}. It is easy to implement and can be embedded in an existing deterministic language, rather than requiring its own specialized interpreter or compiler. And it operates on arbitrary programs, including the complex programs found in procedural modeling and design applications. Unfortunately, it is also inefficient: every Metropolis Hastings proposal triggers a complete re-execution of the program, despite the fact that the changed variable often only affects a small subset of the program's execution trace. Probabilistic languages that run on custom interpreters often exploit this fact for faster inference, but they are complicated to implement and do not integrate as readily with existing deterministic code.
 
-Lightweight MH as the main workhorse of PPL inference, its desirable properties. Unfortunately slowness / `quadratic' scaling due to trace replay overhead. Intepreters such as Venture don't have this problem. Can we get the same behavior in a lightweight system?
-
-Yes, C3. Give basic idea.
+To get the best of both worlds---efficient, incrementalized proposals in a lightweight, embedded system---I developed a new MH implementation technique called C3~\cite{C3}. C3 leverages two insights. First, it transforms programs into continuation passing style (CPS): this makes continuations available at every point in the program, so execution can resume from anywhere. Second, C3 caches the receiver, inputs, and output of each function call, since many calls can be skipped when these quantities have not changed.
 
 Talk about results. Play up procedural modeling speedup, but also mention how useful it is for Bayesian data analysis in latent variable models.
 
-\section*{Dealing with tight constraints}
+\section*{Dealing with tight constraints using HMC}
 
 Problems with single-site MH. Connection between tight constraints and data-induced strong variable coupling. HMC, statistical efficiency gain.
 
 Also talk about how we implemented it in Quicksand, and how that provides computational efficiency, too.
 
-\section*{Handling branching structure}
+\section*{Handling branching structure with SOSMC}
 
 Motivate by talking about how MCMC gets stuck in structural local maxima, how SMC could avoid that problem entirely. Inspired by recent work adapting SMC to probabilistic programs. Have to handle `non-linear' programs with structured branching, as well as transdimensionality. Have to linearize call tree. Linearization affects SMC performance. Development of SOSMC. Stochastic future. Cool results.
 
