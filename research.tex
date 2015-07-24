@@ -46,13 +46,13 @@ BCOR5mm, % Binding correction
 
 \maketitle
 
-My research focuses on solving complex procedural modeling and design problems using probabilistic programming. My work is interdisciplinary, sitting at the intersection of computer graphics, artificial intelligence, and programming languages. I believe in developing general-purpose solutions, rather than specialized fixes for one problem or application domain. This means that on the way to solving computer graphics problems, my work often leads to systems and algorithms that have broader impact for probabilistic programming and probabilistic inference in general.
+My research focuses on solving complex procedural modeling and design problems using probabilistic programming. My work is interdisciplinary, leveraging insights from computer graphics, artificial intelligence, and programming languages. I develop composable, general-purpose solutions, rather than specialized fixes for one problem or application domain. This means that on the way to solving modeling and design problems, my work often leads to systems and algorithms that have broader impact for probabilistic programming and probabilistic inference in general.
 
 In procedural modeling and design, content creators write programs that pseudo-randomly generate visual content, such as 3D models, websites, or arrangements of furniture. This approach allows designers to rapidly create and explore alternative design possibilities. It also scales to creating large amounts of diverse content without extensive human effort, which is becoming more important as the virtual worlds of films, games, and simulations grow larger and more detailed. Traditional procedural modeling tools operate via forward reasoning: the user writes a step-by-step recipe for generating content, such as a 3D model for a house. However, detailed, realistic content must also satisfy properties that can be difficult for the programmer to guarantee constructively---for example, the house models should be structurally stable. Satisfying such conditions seems to require \emph{inverse} reasoning, working backwards from the desired result.
 
 Bayesian probabilistic inference provides a well-studied conceptual mechanism for this kind of inversion: the forward recipe serves as a generative prior, and the desired properties can be encouraged via a likelihood function. Probabilistic programs are a natural choice for representing these types of distributions. They are a Turing-complete, universal family of probabilistic models, so they can capture the highly structured, recursive, mixed-continuous-discrete nature of many procedural models~\cite{Church}. They are also human-readable and human-writable and require little-to-no special expertise in probabilistic inference to author or understand.
 
-Unfortunately, the expressiveness of probabilistic programs comes at a cost: inference on such complex programs is often intractable. We must resort to approximate methods that converge slowly, if at all. Thus, most of my work has focused on improving the reliability and runtime efficiency of probabilistic programming inference, with a particular eye towards procedural modeling applications in computer graphics. My research in this space has involved both algorithmic work (increasing the statistical efficiency of inference through new or improved algorithms) as well as systems work (making existing inference algorithms more computationally efficient).
+Unfortunately, the expressiveness of probabilistic programs comes at a cost: inference on such complex programs is often intractable. We must resort to approximate methods that converge slowly, if at all. Thus, most of my work has focused on improving the reliability and runtime efficiency of probabilistic programming inference, with a particular eye towards procedural modeling and design applications. My research in this space has involved both algorithmic work (increasing the statistical efficiency of inference through new or improved algorithms) as well as systems work (making existing inference algorithms more computationally efficient).
 
 
 
@@ -111,7 +111,7 @@ Instead, I have proposed using Sequential Monte Carlo (SMC) for inference on suc
 
 SMC was originally developed for time series models---to use it with programs that feature structured branching, the function call trees of those programs must be linearized. My work has shown that SMC's performance is sensitive to the linearization order chosen, and that \emph{randomizing} the order of each particle leads to stable high performance. This strategy is easy to implement using a simple stochastic variant of the `future' parallel programming primitive. The resulting algorithm is called Stochastically Ordered Sequential Monte Carlo (SOSMC).
 
-For recursively branching procedural models, SOSMC often converges significantly faster than MH. For example, in the figure below, SOSMC generates a tree structure which strongly resembles the target shape after a little more than 20 seconds. Given the same amount of time, MH is struggling to escape a structural local maximum which lacks the second main branch of the target shape. An interactive demo comparing SOSMC to MH can be found online at \url{http://dritchie.github.io/web-procmod}.
+For recursively branching procedural models, SOSMC often converges significantly faster than MH. For example, in the figure below, SOSMC generates a tree structure which strongly resembles the target shape after a little more than 20 seconds. Given the same amount of time, MH struggles to escape a structural local maximum which lacks the second main branch of the target shape. An interactive demo comparing SOSMC to MH can be found online at \url{http://dritchie.github.io/web-procmod}.
 
 \vspace{1em}
 \begin{figure}[h!]
@@ -126,7 +126,19 @@ For recursively branching procedural models, SOSMC often converges significantly
 
 
 
+% \section*{Lessons Learned}
+
+% Over the past few years, I've learned some stuff.
+
+% \paragraph{Leverage Insights from Other Fields} Got HMC from Bayesian data analysis. Stochastic futures, continuation passing style all come from PL community.
+
+% \paragraph{Seek General Solutions} Methods I've developed have been useful in other contexts. C3 ends up being useful for Bayesian data analysis. SOSMC could work in vision, too. Also, generality means these methods can all be composed. HMC or LWMH within SOSMC, or alternating HMC/LWMH, etc.
+
+
+
 \section*{Future research agenda}
+
+Probabilistic programming for modeling and design is a research field in its infancy, and there are many directions of future work to explore. With the SOSMC project, I have seen how insights from programming languages can translate to new
 
 Opening statement about how PPLs for design is a field in its infancy, lots of open sky to explore. Opportunities to integrate insights from both AI/ML and PL/compilers into computer graphics and design tools is very exciting (mention specifically how PL insights enabled SOSMC).
 
