@@ -124,7 +124,7 @@ For recursively branching procedural models, SOSMC often converges significantly
 	\end{tabular}
 \end{figure}
 
-SOSMC also composes usefully with the other systems and algorithms I have described. In a process called \emph{particle rejuvenation}, either C3 or HMC can be used to randomly diversify a set of partially-generated SOSMC particles, generating more varied design suggestions. Ultimately, I envision all of these methods as interchangeable tools in a single programming ecosystem. The WebPPL language already supports all of them and is rapidly improving their interoperability.
+SOSMC also composes usefully with the other systems and algorithms I have described. In a process called \emph{particle rejuvenation}, either C3 or HMC can be used to randomly diversify a set of partially-generated SOSMC particles, generating more varied design suggestions. Ultimately, I envision all of these methods as interchangeable tools in a single programming ecosystem. In fact, the WebPPL language already supports all of them and is rapidly improving their interoperability.
 
 
 % \section*{Lessons Learned}
@@ -139,13 +139,11 @@ SOSMC also composes usefully with the other systems and algorithms I have descri
 
 \section*{Future research agenda}
 
-Probabilistic programming for modeling and design is a research field in its infancy, and there are many directions of future work to explore. First, 
+Probabilistic programming for procedural modeling and design is a research field in its infancy, and there are many directions of future work to explore. First, though we have made major strides in improving the performance of probabilistic programming inference, there are compelling applications that require it to run even faster: games must generate new procedural content on the fly; interactive design tools must react in real time to user input. We might address these challenges by embracing \emph{amortized inference}, investing in pre-computation so that online inference runs faster~\cite{AmortizedInference}. Recent work in variational inference is particularly exciting---researchers have shown that given a generative model of data, it is possible to train a `recognition model' that inverts the generative process, taking the data as input and sampling values of the latent variables~\cite{StochasticBackprop}. These are promising methods, but further work is needed to adapt them for the structure-changing programs and non-data-driven likelihoods used in procedural modeling and design.
 
-Making inference more real-time (mention some cool examples of real-time constrained content generation that we'd like to achieve). Talk about amortized inference as an idea. Specifically talk about variational inference as a mechanism for achieving it. Mention/cite recent work in using neural networks to build recognition models. But need further work to make these work with structure-changing models, and with constraints not derived from data.
+Second, inference is too much a `batch operation'/offline process---we need to account for the presence of the human user. More interactivity. Programs should react to user input / new data; FRP ideas. Also, mixed-initiative (or is the phrase I'm looking for mixed-modality?) programming, where user sometimes writes code and sometimes specifies examples / does direct manipulation, and the system infers code from that interaction.
 
-Inference is too much a `batch operation'---we need to account for the presence of the human user. More interactivity. Programs should react to user input / new data; FRP ideas. Also, mixed-initiative (or is the phrase I'm looking for mixed-modality?) programming, where user sometimes writes code and sometimes specifies examples / does direct manipulation, and the system infers code from that interaction.
-
-Exploring connections to nearby disciplines. Procedural models as structured priors for computer vision, 3D reconstruction. Can also be viewed as a form of `content creation by scanning the world.' Also, real-time inference has other applications in time-constrained / resource-limited environments. Examples include building programmable embedded systems for doing sensing/inference. Would be useful in robotics, also just as a DIY thing for people to put around their houses, etc.
+Finally, exploring connections to nearby disciplines. Procedural models as structured priors for computer vision, 3D reconstruction. Can also be viewed as a form of `content creation by scanning the world.' Also, real-time inference has other applications in time-constrained / resource-limited environments. Examples include building programmable embedded systems for doing sensing/inference. Would be useful in robotics, also just as a DIY thing for people to put around their houses, etc.
 
 
 \bibliographystyle{plain}
