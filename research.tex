@@ -75,7 +75,7 @@ C3 significantly accelerates MH proposals. In the procedural modeling example be
 	\includegraphics[width=0.25\linewidth]{figs/c3/target} &
 	\includegraphics[width=0.25\linewidth]{figs/c3/result} &
 	\shortstack{ \includegraphics[width=0.5\linewidth]{figs/c3/procmod_time} \\ \includegraphics[width=0.5\linewidth]{figs/c3/procmod_throughput} } \\
-	{\helvetica \scriptsize{Target}} & {\helvetica \scriptsize{Output}} & 
+	{\helvetica \scriptsize{Target Shape}} & {\helvetica \scriptsize{Output}} & 
 \end{tabular}
 \end{figure}
 
@@ -105,11 +105,13 @@ I have shown that HMC successfully generates design suggestions in two different
 
 \section*{Handling branching structure with SOSMC}
 
-HMC helps with tight constraints over continuous vars, but there's another issue: tight constraints involving structure change. Have to say what structure change is, give examples (trees, probably). It's a harder problem: not only can we not explore, but these structural local maxima can keep us from reaching even a single good solution. Add-ons to MH can help, such as LARJ [CITE?], but at the cost of extra computation and complexity (param tuning). Ideal would be a simpler inference algorithm that sidesteps this problem entirely.
+HMC provides efficient inference over continuous variables, but modeling and design programs also often feature discrete, \emph{structural} variables: for example, a procedural tree model has random choices that dictate when to generate new branches. When constrained via a likelihood function, such programs can exhibit ``structural local maxima'': local maxima of the likelihood function that MH methods can only escape with carefully-coordinated proposals involving structural variables. The discrete, combinatorial nature of this problem makes it especially difficult to solve. There exist modifications to MH which can reliably escape such local maxima, such as the locally-annealed reversible jump algorithm, but they can require signficant extra computation to do so~\cite{LARJ}. 
 
-SMC as a candidate (inspired by recent work on PPL SMC [cite?]). Describe what SMC does. Say why it might be good: gives feedback as the model is being generated, so it doesn't get stuck with a poor complete structure. SMC developed with linear time series models in mind, but we need it to support models with structured branching. Need to linearize call tree, and I show that always using depth-first order is bad. My insight is to randomly choose the order, resulting in SOSMC. Permits a very simple implementation using a stochastic variant of the future construct from parallel programming.
+Instead, I have proposed using Sequential Monte Carlo (SMC) for inference on such programs~\cite{SOSMC}. SMC generates a set of samples, called \emph{particles}, in parallel. At regular intervals during the generation process, particles are resampled according to their likelihood score thus far: high-scoring particles tend to be duplicated, while low-scoring ones tend to be killed off. By receiving likelihood feedback throughout generation, SMC can steer its samples away from structural local maxima before they finish generating.
 
-For recursively branching procedural models, SOSMC often converges significantly faster than MH. Show tree example from talk where MH gets stuck in local maximum but SOSMC does just fine.
+SMC was originally developed for time series models---to use it with programs that feature structured branching, the function call trees of those programs must be linearized. My work has shown that SMC's performance is sensitive to the linearization order chosen, and that \emph{randomizing} the order of each particle leads to stable high performance. This strategy is easy to implement using a simple stochastic variant of the `future' parallel programming primitive. The resulting algorithm is called Stochastically Ordered Sequential Monte Carlo (SOSMC).
+
+For recursively branching procedural models, SOSMC often converges significantly faster than MH. For example, in the figure below, SOSMC generates a tree structure which strongly resembles the target shape after a little more than 20 seconds. Given the same amount of time, MH is struggling to escape a structural local maximum which lacks the second main branch of the target shape. An interactive demo comparing SOSMC to MH can be found online at \url{http://dritchie.github.io/web-procmod}.
 
 \vspace{1em}
 \begin{figure}[h!]
@@ -118,7 +120,7 @@ For recursively branching procedural models, SOSMC often converges significantly
 		\includegraphics[width=0.30\linewidth]{figs/sosmc/target.png} &
 		\includegraphics[width=0.30\linewidth]{figs/sosmc/sosmc.png} &
 		\includegraphics[width=0.30\linewidth]{figs/sosmc/mh.png} \\
-		{\helvetica \scriptsize{Target}} & {\helvetica \scriptsize{SOSMC (22.47s)}} & {\helvetica \scriptsize{MH (22.47s)}}
+		{\helvetica \scriptsize{Target Shape}} & {\helvetica \scriptsize{SOSMC (22.47s)}} & {\helvetica \scriptsize{MH (22.47s)}}
 	\end{tabular}
 \end{figure}
 
