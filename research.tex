@@ -124,6 +124,7 @@ For recursively branching procedural models, SOSMC often converges significantly
 	\end{tabular}
 \end{figure}
 
+SOSMC also composes usefully with the other systems and algorithms I have described. In a process called \emph{particle rejuvenation}, either C3 or HMC can be used to randomly diversify a set of partially-generated SOSMC particles, generating more varied design suggestions. Ultimately, I envision all of these methods as interchangeable tools in a single programming ecosystem. The WebPPL language already supports all of them and is rapidly improving their interoperability.
 
 
 % \section*{Lessons Learned}
@@ -138,9 +139,7 @@ For recursively branching procedural models, SOSMC often converges significantly
 
 \section*{Future research agenda}
 
-Probabilistic programming for modeling and design is a research field in its infancy, and there are many directions of future work to explore. With the SOSMC project, I have seen how insights from programming languages can translate to new
-
-Opening statement about how PPLs for design is a field in its infancy, lots of open sky to explore. Opportunities to integrate insights from both AI/ML and PL/compilers into computer graphics and design tools is very exciting (mention specifically how PL insights enabled SOSMC).
+Probabilistic programming for modeling and design is a research field in its infancy, and there are many directions of future work to explore. First, 
 
 Making inference more real-time (mention some cool examples of real-time constrained content generation that we'd like to achieve). Talk about amortized inference as an idea. Specifically talk about variational inference as a mechanism for achieving it. Mention/cite recent work in using neural networks to build recognition models. But need further work to make these work with structure-changing models, and with constraints not derived from data.
 
