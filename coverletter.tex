@@ -1,0 +1,108 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Long Lined Cover Letter
+% LaTeX Template
+% Version 1.0 (1/6/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Matthew J. Miller
+% http://www.matthewjmiller.net/howtos/customized-cover-letter-scripts/
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt,stdletter,dateno,sigleft]{newlfm} % Extra options: 'sigleft' for a left-aligned signature, 'stdletternofrom' to remove the from address, 'letterpaper' for US letter paper - consult the newlfm class manual for more options
+
+\usepackage{charter} % Use the Charter font for the document text
+
+\newsavebox{\Luiuc}\sbox{\Luiuc}{\parbox[b]{1.75in}{\vspace{0.25in}
+\includegraphics[width=\linewidth]{stanford_cs_logo.png}}} % Company/institution logo at the top left of the page
+\makeletterhead{Uiuc}{\Lheader{\usebox{\Luiuc}}}
+
+% \newlfmP{sigsize=50pt} % Slightly decrease the height of the signature field
+\newlfmP{sigsize=0pt} % Slightly decrease the height of the signature field
+\newlfmP{addrfromphone} % Print a phone number under the sender's address
+\newlfmP{addrfromemail} % Print an email address under the sender's address
+\PhrPhone{Phone} % Customize the "Telephone" text
+\PhrEmail{Email} % Customize the "E-mail" text
+
+\lthUiuc % Print the company/institution logo
+
+%URLs
+\usepackage{hyperref}
+
+%----------------------------------------------------------------------------------------
+%	YOUR NAME AND CONTACT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\namefrom{Daniel Ritchie} % Name
+
+\addrfrom{
+\today\\[12pt] % Date
+736 Escondido Road \#323 \\ % Address
+Stanford, CA 94305
+}
+
+\phonefrom{(530) 409-6656} % Phone number
+
+\emailfrom{\url{dritchie@stanford.edu}} % Email address
+
+%----------------------------------------------------------------------------------------
+%	ADDRESSEE AND GREETING/CLOSING
+%----------------------------------------------------------------------------------------
+
+% These are fields that I intend to (eventually) specify programmatically
+\newcommand{\Recipient}{Faculty Search Committee}
+\newcommand{\University}{Some University}
+\newcommand{\Department}{Some Department}
+\newcommand{\Address}{123 Pleasant Lane\\City, State 12345}
+
+
+% \closeline{Sincerely,} % Closing text
+\closeline{Sincerely, \newline \newline \includegraphics[width=0.45\linewidth]{signature.jpg} \vspace{-2em}} % Closing text
+
+\greetto{Dear \Recipient,} % Greeting text
+
+\nameto{\Recipient} % Addressee of the letter above the to address
+
+\addrto{
+\Department \\
+\University \\
+\Address
+}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\begin{newlfm}
+
+%----------------------------------------------------------------------------------------
+%	LETTER CONTENT
+%----------------------------------------------------------------------------------------
+
+I am currently a Ph.D. candidate in the Computer Science Department at Stanford University, advised by Pat Hanrahan. I expect to complete my dissertation in June 2015, and I am writing to submit my application for a tenure-track Assistant Professor position in your department.
+
+My research interests center around the use of computation to support and enhance human creativity.
+In my thesis work, I have focused on solving procedural modeling and design problems using probabilistic programming.
+My work is interdiscplinary, sitting at the intersection of graphics, artificial intelligence, and programming languages.
+I recently presented core components of my thesis work at both the SIGGRAPH 2015 and Eurgraphics 2015 conferences, and I have also recently contributed significant performance improvements to the open-source WebPPL probabilistic programming language.
+Please visit my website at \url{http://stanford.edu/~dritchie} for more details about my research.
+
+Moving forward, I am particularly excited about exploring collaborations with faculty in other areas. For example, I am interested in building and evaluating interactive systems around the techniques developed in my thesis work, for which close collaboration with HCI faculty would be beneficial. I would also like to explore connections between my work and cutting-edge Bayesian methods for computer vision.
+
+I am also committed to mentoring students at both the graduate and undergraduate levels, and to developing and teaching courses in computer graphics and artificial intelligence. I especially wish to develop my students' commmunication skills in addition to their technical prowess, so that they can effectively explain their work or pitch their ideas to both technical and non-technical audiences.
+
+Enclosed are my curriculum vitae, research and teaching statements, and a list of references (included in the CV); these materials can also be found on my website. Please do not hesitate to contact me if you require any further information.
+
+%----------------------------------------------------------------------------------------
+
+\end{newlfm}
+\end{document}
