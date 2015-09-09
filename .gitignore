@@ -1,7 +1,7 @@
 cv.pdf
 research.pdf
 teaching.pdf
-coverletter.pdf
+coverletter_pdfs/*
 *.aux
 *.log
 *.synctex.gz
