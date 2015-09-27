@@ -51,18 +51,27 @@ function newcommand(name, stringvalue) {
 // -------------------------------------------------------------------
 
 [
+	// {
+	// 	name: 'test1',
+	// 	university: 'University',
+	// 	department: 'Department',
+	// 	recipient: 'Faculty Search Committee',
+	// 	address: ['123 Pleasant Lane', 'City, State 12345']
+	// },
+	// {
+	// 	name: 'test2',
+	// 	university: 'Institute',
+	// 	department: 'School',
+	// 	recipient: 'CS Faculty Search Committee',
+	// 	address: ['456 Exquisite Drive', 'City, State 67890']
+	// }
 	{
-		name: 'test1',
-		university: 'University',
-		department: 'Department',
+		name: 'princeton',
+		university: 'Princeton University',
+		department: 'Department of Computer Science',
 		recipient: 'Faculty Search Committee',
-		address: ['123 Pleasant Lane', 'City, State 12345']
-	},
-	{
-		name: 'test2',
-		university: 'Institute',
-		department: 'School',
-		recipient: 'CS Faculty Search Committee',
-		address: ['456 Exquisite Drive', 'City, State 67890']
+		address: ['35 Olden Street', 'Princeton, NJ 08540-5233']
 	}
 ].forEach(compile);
+
+
