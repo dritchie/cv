@@ -51,26 +51,40 @@ function newcommand(name, stringvalue) {
 // -------------------------------------------------------------------
 
 [
-	// {
-	// 	name: 'test1',
-	// 	university: 'University',
-	// 	department: 'Department',
-	// 	recipient: 'Faculty Search Committee',
-	// 	address: ['123 Pleasant Lane', 'City, State 12345']
-	// },
-	// {
-	// 	name: 'test2',
-	// 	university: 'Institute',
-	// 	department: 'School',
-	// 	recipient: 'CS Faculty Search Committee',
-	// 	address: ['456 Exquisite Drive', 'City, State 67890']
-	// }
 	{
 		name: 'princeton',
 		university: 'Princeton University',
 		department: 'Department of Computer Science',
 		recipient: 'Faculty Search Committee',
 		address: ['35 Olden Street', 'Princeton, NJ 08540-5233']
+	},
+	{
+		name: 'ucsb',
+		university: 'University of California, Santa Barbara',
+		department: 'Department of Computer Science',
+		recipient: 'Faculty Search Committee',
+		address: ['2104 Harold Frank Hall', 'Santa Barbara, CA 93106-5110']
+	},
+	{
+		name: 'georgia_tech',
+		university: 'Georgia Institute of Technology',
+		department: 'School of Computer Science',
+		recipient: 'Faculty Search Committee',
+		address: ['Klaus Advanced Computing Building', '266 Ferst Drive', 'Atlanta, GA 30332-0765']
+	},
+	{
+		name: 'cornell',
+		university: 'Cornell University',
+		department: 'Department of Computer Science',
+		recipient: 'Faculty Search Committee',
+		address: ['402 Gates Hall', 'Ithaca, NY 14853-7501']
+	},
+	{
+		name: 'virginia_tech',
+		university: 'Virginia Polytechnic Institute and State University',
+		department: 'Department of Computer Science',
+		recipient: 'Faculty Search Committee',
+		address: ['114 McBryde Hall', '225 Stanger Street', 'Blacksburg, VA 24061']
 	}
 ].forEach(compile);
 
