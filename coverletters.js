@@ -85,6 +85,27 @@ function newcommand(name, stringvalue) {
 		department: 'Department of Computer Science',
 		recipient: 'Faculty Search Committee',
 		address: ['114 McBryde Hall', '225 Stanger Street', 'Blacksburg, VA 24061']
+	},
+	{
+		name: 'ucla',
+		university: 'University of California, Los Angeles',
+		department: 'Department of Computer Science',
+		recipient: 'Faculty Search Committee',
+		address: ['4732 Boelter Hall', 'Box 951596', 'Los Angeles, CA 90095-1596']
+	},
+	{
+		name: 'ucsc',
+		university: 'University of California, Santa Cruz',
+		department: 'Computational Media Department',
+		recipient: 'Faculty Search Committee',
+		address: []
+	},
+	{
+		name: 'uiuc',
+		university: 'University of Illinois at Urbana-Champaign',
+		department: 'Department of Computer Science',
+		recipient: 'Faculty Search Committee',
+		address: ['201 North Goodwin Avenue', 'Urbana, IL 61801-2302']
 	}
 ].forEach(compile);
 
