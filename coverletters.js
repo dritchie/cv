@@ -113,6 +113,34 @@ function newcommand(name, stringvalue) {
 		department: 'Department of Computer Science',
 		recipient: 'Faculty Search Committee',
 		address: ['51 Prospect Street', 'New Haven, CT 06511-8937']
+	},
+	{
+		name: 'berkeley',
+		university: 'University of California, Berkeley',
+		department: 'Department of Electrical Engineering and Computer Sciences\\\\Computer Science Division',
+		recipient: 'Faculty Search Committee',
+		address: ['387 Soda Hall', 'Berkeley, CA 94720-1776']
+	},
+	{
+		name: 'irvine',
+		university: 'University of California, Irvine',
+		department: 'Donald Bren School of Information and Computer Sciences',
+		recipient: 'Faculty Search Committee',
+		address: ['6210 Donald Bren Hall', 'Irvine, CA 92697-3425']
+	},
+	{
+		name: 'cmu',
+		university: 'Carnegie Mellon University',
+		department: 'School of Computer Science',
+		recipient: 'Faculty Search Committee',
+		address: ['5000 Forbes Avenue', 'Pittsburgh, PA 15213']
+	},
+	{
+		name: 'tamu',
+		university: 'Texas A\\&M University',
+		department: 'Department of Computer Science and Engineering',
+		recipient: 'Faculty Search Committee',
+		address: ['301 Harvey R Bright Building', 'College Station, TX 77843-3112']
 	}
 ].forEach(compile);
 
