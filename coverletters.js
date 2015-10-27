@@ -68,9 +68,9 @@ function newcommand(name, stringvalue) {
 	{
 		name: 'georgia_tech',
 		university: 'Georgia Institute of Technology',
-		department: 'School of Computer Science',
+		department: 'School of Interactive Computing',
 		recipient: 'Faculty Search Committee',
-		address: ['Klaus Advanced Computing Building', '266 Ferst Drive', 'Atlanta, GA 30332-0765']
+		address: ['Tech Square Research Building', '85 Fifth Street NW', 'Atlanta, GA 30308']
 	},
 	{
 		name: 'cornell',
@@ -141,6 +141,27 @@ function newcommand(name, stringvalue) {
 		department: 'Department of Computer Science and Engineering',
 		recipient: 'Faculty Search Committee',
 		address: ['301 Harvey R Bright Building', 'College Station, TX 77843-3112']
+	},
+	{
+		name: 'brown',
+		university: 'Brown University',
+		department: 'Computer Science Department',
+		recipient: 'Faculty Search Committee',
+		address: ['115 Waterman Street, 4th floor', 'Providence, RI 02912-1910']
+	},
+	{
+		name: 'maryland',
+		university: 'University of Maryland',
+		department: 'Department of Computer Science',
+		recipient: 'Faculty Search Committee',
+		address: ['A.V. Williams Building', 'College Park, MD 20742']
+	},
+	{
+		name: 'harvard',
+		university: 'Harvard University',
+		department: 'School of Engineering and Applied Sciences',
+		recipient: 'Computer Science Faculty Search Committee',
+		address: ['29 Oxford Street', 'Cambridge, MA 02138']
 	}
 ].forEach(compile);
 
