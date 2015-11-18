@@ -169,6 +169,13 @@ function newcommand(name, stringvalue) {
 		department: 'Department of Computer Science',
 		recipient: 'Faculty Search Committee',
 		address: ['Sandford Fleming Building', '10 King’s College Road, Room 3302', 'Toronto, Ontario M5S 3G4']
+	},
+	{
+		name: 'ucsd',
+		university: 'University of California, San Diego',
+		department: 'Department of Computer Science and Engineering',
+		recipient: 'Faculty Search Committee',
+		address: ['9500 Gilman Drive', 'La Jolla, CA 92093-0404']
 	}
 ].forEach(compile);
 
