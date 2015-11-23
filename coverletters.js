@@ -4,6 +4,8 @@ var cp = require('child_process');
 
 var templateFilename = 'coverletter.tex';
 var TEMPLATE = fs.readFileSync(templateFilename).toString();
+var templateFilename_libarts = 'coverletter_libarts.tex';
+var TEMPLATE_LIBARTS = fs.readFileSync(templateFilename_libarts).toString();
 var resultsDir = 'coverletter_pdfs';
 var tmpFileBasename = 'coverletter_TMP';
 var tmpFilename = tmpFileBasename + '.tex';
@@ -11,7 +13,8 @@ var outputBasename = 'coverletter';
 
 function compile(inst) {
 	ensureResultsDir();
-	fs.writeFileSync(tmpFilename, preamble(inst) + TEMPLATE);
+	var template = inst.libarts ? TEMPLATE_LIBARTS : TEMPLATE
+	fs.writeFileSync(tmpFilename, preamble(inst) + template);
 	try {
 		cp.execSync('pdflatex ' + tmpFilename, {stdio: null});
 	} catch (e) {
@@ -39,6 +42,9 @@ function preamble(inst) {
 		newcommand('Department', inst.department) + newline() +
 		newcommand('Recipient', inst.recipient) + newline() + 
 		newcommand('Address', inst.address.join('\\\\')) + newline();
+	if (inst.libarts) {
+		str += newcommand('UniversityShort', inst.university_short) + newline();
+	}
 	return str;
 }
 
@@ -176,6 +182,42 @@ function newcommand(name, stringvalue) {
 		department: 'Department of Computer Science and Engineering',
 		recipient: 'Faculty Search Committee',
 		address: ['9500 Gilman Drive', 'La Jolla, CA 92093-0404']
+	},
+	{
+		name: 'harvey_mudd',
+		libarts: true,
+		university: 'Harvey Mudd College',
+		university_short: 'Harvey Mudd',
+		department: 'Computer Science Department',
+		recipient: 'Faculty Search Committee',
+		address: ['301 Platt Boulevard', 'Claremont, CA 91711']
+	},
+	{
+		name: 'williams',
+		libarts: true,
+		university: 'Williams College',
+		university_short: 'Williams',
+		department: 'Department of Computer Science',
+		recipient: 'Faculty Search Committee',
+		address: ['47 Lab Campus Drive', 'Williamstown, MA 01267']
+	},
+	{
+		name: 'swarthmore',
+		libarts: true,
+		university: 'Swarthmore College',
+		university_short: 'Swarthmore',
+		department: 'Department of Computer Science',
+		recipient: 'Faculty Search Committee',
+		address: ['500 College Avenue', 'Swarthmore, PA 19081']
+	},
+	{
+		name: 'pomona',
+		libarts: true,
+		university: 'Pomona College',
+		university_short: 'Pomona',
+		department: 'Computer Science Department',
+		recipient: 'Faculty Search Committee',
+		address: ['185 E. Sixth Street', 'Claremont, CA 91711']
 	}
 ].forEach(compile);
 
