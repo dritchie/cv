@@ -184,6 +184,13 @@ function newcommand(name, stringvalue) {
 		address: ['9500 Gilman Drive', 'La Jolla, CA 92093-0404']
 	},
 	{
+		name: 'uw',
+		university: 'University of Washington',
+		department: 'Department of Computer Science and Engineering',
+		recipient: 'Faculty Search Committee',
+		address: ['185 Stevens Way', 'Seattle, WA 98195-2350']
+	},
+	{
 		name: 'harvey_mudd',
 		libarts: true,
 		university: 'Harvey Mudd College',
