@@ -225,6 +225,13 @@ function newcommand(name, stringvalue) {
 		department: 'Computer Science Department',
 		recipient: 'Faculty Search Committee',
 		address: ['185 E. Sixth Street', 'Claremont, CA 91711']
+	},
+	{
+		name: 'purdue',
+		university: 'Purdue University',
+		department: 'Department of Computer Science',
+		recipient: 'Faculty Search Committee',
+		address: ['305 N. University Street', 'West Lafayette, IN 47907-2107']
 	}
 ].forEach(compile);
 
