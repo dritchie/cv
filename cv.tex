@@ -2,6 +2,7 @@
 \documentclass[line,margin]{res} 
 \usepackage{cite}
 \usepackage{url}
+\usepackage{xcolor}
 %\usepackage{helvetica} % uses helvetica postscript font (download helvetica.sty)
 %\usepackage{newcent}   % uses new century schoolbook postscript font 
 
@@ -119,73 +120,93 @@ Conferred May 2010
 \newcommand{\pubvenue}[1]{\emph{#1}}
 \newcommand{\pubaward}[1]{\textsc{#1}}
 
+All publications listed below follow the author order conventions for visual computing (e.g. graphics, vision, machine learning): the first author is the primary implementer (typically a PhD student), and the last author is typically the direct supervisor of the first author and the principal investigator on the project.
+Middle authors vary in role, with students and interns typically listed before faculty and senior research scientists.
+
+\definecolor{tblue}{rgb}{0.12,0.47,0.70}
+\newcommand{\myphd}[1]{\textbf{\color{tblue}#1}}
+\definecolor{tpurple}{rgb}{0.58,0.40,0.74}
+\newcommand{\mystud}[1]{\textbf{\color{tpurple}#1}}
+\definecolor{tgreen}{rgb}{0.17,0.63,0.17}
+\newcommand{\extphd}[1]{\textbf{\color{tgreen}#1}}
+\definecolor{torange}{rgb}{1.0,0.5,0.05}
+\newcommand{\extstud}[1]{\textbf{\color{torange}#1}}
+
+Annotation scheme for publications started while employed at Brown University (July 2017 onwards):
+\begin{itemize}
+	\item \myphd{Blue bold text}: PhD student in Daniel's lab.
+	\item \mystud{Purple bold text}: undergraduate or masters student in Daniel's lab.
+	\item \extphd{Green bold text}: external PhD student whom Daniel closely mentored.
+	\item \extstud{Orange bold text}: external undergraduate or masters student whom Daniel closely mentored.
+\end{itemize}
+
 \pubtitle{Roominoes: Generating Novel 3D Floor Plans From Existing 3D Rooms}.
-\pubauthors{Kai Wang, Xianghao Xu, Leon Lei, Natalie Lindsay, Selena Ling, Angel X. Chang, Manolis Savva, Daniel Ritchie}.
-\pubvenue{SGP 2021}.
+\pubauthors{\myphd{Kai Wang}, \myphd{Xianghao Xu}, \mystud{Leon Lei}, \mystud{Natalie Lindsay}, \mystud{Selena Ling}, Angel X. Chang, Manolis Savva, Daniel Ritchie}.
+\pubvenue{Symposium on Geometry Processing (SGP) 2021}.
 
 \pubtitle{ShapeMOD: Macro Operation Discovery for 3D Shape Programs}.
-\pubauthors{R. Kenny Jones, David Charatan, Paul Guerrero, Niloy Mitra, Daniel Ritchie}.
-\pubvenue{SIGGRAPH 2021}.
+\pubauthors{\myphd{R. Kenny Jones}, \mystud{David Charatan}, Paul Guerrero, Niloy Mitra, Daniel Ritchie}.
+\pubvenue{ACM Transactions on Graphics (Proceedings of SIGGRAPH) 2021}.
 
 \pubtitle{Inferring CAD Modeling Sequences using Zone Graphs}.
-\pubauthors{Xianghao Xu, Wenzhe Peng, Chin-Yi Cheng, Karl D. D. Willis, Daniel Ritchie}.
-\pubvenue{CVPR 2021}.
+\pubauthors{\myphd{Xianghao Xu}, \extphd{Wenzhe Peng}, Chin-Yi Cheng, Karl D. D. Willis, Daniel Ritchie}.
+\pubvenue{IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2021}.
 
 \pubtitle{Motion Annotation Programs: A Scalable Approach to Annotating Kinematic Articulations in Large 3D Shape Collections}.
-\pubauthors{Xianghao Xu, David Charatan, Sonia Raychaudhuri, Hanxiao Jiang, Mae Heitmann, Vladimir Kim, Siddhartha Chaudhuri, Manolis Savva, Angel X. Chang, Daniel Ritchie}.
-\pubvenue{3DV 2020}.
+\pubauthors{\myphd{Xianghao Xu}, \mystud{David Charatan}, \extstud{Sonia Raychaudhuri}, \extstud{Hanxiao Jiang}, \mystud{Mae Heitmann}, Vladimir Kim, Siddhartha Chaudhuri, Manolis Savva, Angel X. Chang, Daniel Ritchie}.
+\pubvenue{International Conference on 3D Vision (3DV) 2020}.
 
 \pubtitle{Shape from Tracing: Towards Reconstructing 3D Object Geometry and SVBRDF Material from Images via Differentiable Path Tracing}.
-\pubauthors{Purvi Goel, Loudon Cohen, James Guesman, Vikas Thamizharasan, James Tompkin, Daniel Ritchie}.
-\pubvenue{3DV 2020}.
+\pubauthors{\mystud{Purvi Goel}, \mystud{Loudon Cohen}, \mystud{James Guesman}, \mystud{Vikas Thamizharasan}, James Tompkin, Daniel Ritchie}.
+\pubvenue{International Conference on 3D Vision (3DV) 2020}.
 
 \pubtitle{ShapeAssembly: Learning to Generate Programs for 3D Shape Structure Synthesis}.
-\pubauthors{R. Kenny Jones, Theresa Barton, Xianghao Xu, Kai Wang, Ellen Jiang, Paul Guerrero, Niloy Mitra, Daniel Ritchie.}
-\pubvenue{SIGGRAPH Asia 2020}.
+\pubauthors{\myphd{R. Kenny Jones}, \myphd{Theresa Barton}, \myphd{Xianghao Xu}, \myphd{Kai Wang}, \mystud{Ellen Jiang}, Paul Guerrero, Niloy Mitra, Daniel Ritchie.}
+\pubvenue{ACM Transactions on Graphics (Proceedings of SIGGRAPH Asia) 2020}.
 
 \pubtitle{GANHopper: Multi-Hop GAN for Unsupervised Image-to-Image Translation}. 
-\pubauthors{Wallace Lira, Johannes Merz, Daniel Ritchie, Daniel Cohen-Or, Hao Zhang.}
-\pubvenue{ECCV 2020}.
+\pubauthors{\extphd{Wallace Lira}, \extphd{Johannes Merz}, Daniel Ritchie, Daniel Cohen-Or, Hao Zhang.}
+\pubvenue{European Conference on Computer Vision (ECCV) 2020}.
 
 \pubtitle{Learning Generative Models of 3D Structures}. 
 \pubauthors{Siddhartha Chaudhuri, Daniel Ritchie, Jiajun Wu, Kai Xu, Hao Zhang.}
-\pubvenue{{Eurographics} 2020 State-of-the-art report}.
+\pubvenue{Eurographics 2020 State-of-the-Art Report}.
 
 \pubtitle{Learning Style Compatibility Between Objects in a Real-World 3D Asset Database}. 
-\pubauthors{Yifan Liu, Ruolan Tang, Daniel Ritchie.}
-\pubvenue{{Pacific Graphics} 2019}.
+\pubauthors{\mystud{Yifan Liu}, \mystud{Ruolan Tang}, Daniel Ritchie.}
+\pubvenue{Pacific Graphics 2019}.
 
 \pubtitle{PlanIT: Planning and Instantiating Indoor Scenes with Relation Graph and Spatial Prior Networks}. 
-\pubauthors{Kai Wang, Yu-an Lin, Ben Weissmann, Manolis Savva, Angel X. Chang, Daniel Ritchie.}
-\pubvenue{SIGGRAPH 2019}.
+\pubauthors{\myphd{Kai Wang}, \mystud{Yu-an Lin}, \mystud{Ben Weissmann}, Manolis Savva, Angel X. Chang, Daniel Ritchie.}
+\pubvenue{ACM Transactions on Graphics (Proceedings of SIGGRAPH) 2019}.
 
 \pubtitle{Fast and Flexible Indoor Scene Synthesis via Deep Convolutional Generative Models}. 
-\pubauthors{Daniel Ritchie, Kai Wang, Yu-an Lin.}
-\pubvenue{CVPR 2019}.
+\pubauthors{Daniel Ritchie, \myphd{Kai Wang}, \mystud{Yu-an Lin}.}
+\pubvenue{IEEE Conference on Computer Vision and Patttern Recognition (CVPR) 2019}.
 
 \pubtitle{Learning to Describe Scenes with Programs}. 
-\pubauthors{Yunchao Liu, Zheng Wu, Daniel Ritchie, William T. Freeman, Joshua B. Tenenbaum, Jiajun Wu.}
-\pubvenue{ICLR 2019}.
+\pubauthors{\extstud{Yunchao Liu}, Zheng Wu, Daniel Ritchie, William T. Freeman, Joshua B. Tenenbaum, Jiajun Wu.}
+\pubvenue{International Conference on Learning Representations (ICLR) 2019}.
 
 \pubtitle{Learning to Infer Graphics Programs from Hand-Drawn Images}. 
-\pubauthors{Kevin Ellis, Daniel Ritchie, Armando Solar-Lezama, Joshua B. Tenenbaum.}
-\pubvenue{NeurIPS 2018}. \pubaward{Spotlight Presentation}.
+\pubauthors{\extphd{Kevin Ellis}, Daniel Ritchie, Armando Solar-Lezama, Joshua B. Tenenbaum.}
+\pubvenue{Conference on Neural Information Processing Systems (NeurIPS) 2018}. \pubaward{Spotlight Presentation}.
 
 \pubtitle{Improving Shape Deformation in Unsupervised Image-to-Image Translation}
-\pubauthors{Aaron Gokaslan, Vivek Ramanujan, Daniel Ritchie, Kwang In Kim, James Tompkin.}
-\pubvenue{ECCV 2018}.
+\pubauthors{\mystud{Aaron Gokaslan}, \mystud{Vivek Ramanujan}, Daniel Ritchie, Kwang In Kim, James Tompkin.}
+\pubvenue{European Conference on Computer Vision (ECCV) 2018}.
 
 \pubtitle{Deep Convolutional Priors for Indoor Scene Synthesis}
-\pubauthors{Kai Wang, Manolis Savva, Angel X. Chang, Daniel Ritchie.}
-\pubvenue{SIGGRAPH 2018}.
+\pubauthors{\myphd{Kai Wang}, Manolis Savva, Angel X. Chang, Daniel Ritchie.}
+\pubvenue{ACM Transactions on Graphics (Proceedings of SIGGRAPH) 2018}.
 
 \pubtitle{ScanComplete: Large-Scale Scene Completion and Semantic Segmentation for 3D Scans}
 \pubauthors{Angela Dai, Daniel Ritchie, Martin Bokeloh, Scott Reed, Jürgen Sturm, Matthias Nießner.}
-\pubvenue{CVPR 2018}.
+\pubvenue{IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2018}.
 
 \pubtitle{Example-based Authoring of Procedural Modeling Programs with Structural and Continuous Variability}
 \pubauthors{Daniel Ritchie, Sarah Jobalia, Anna Thomas}
-\pubvenue{Eurographics 2018}.
+\pubvenue{Proceedings of Eurographics 2018}.
 
 \pubtitle{An Improved Training Procedure for Neural Autoregressive Data Completion}. 
 \pubauthors{Maxime Voisin, Daniel Ritchie.}
@@ -193,19 +214,19 @@ Conferred May 2010
 
 \pubtitle{Neurally-Guided Procedural Models: Amortized Inference for Procedural Graphics Programs using Neural Networks}. 
 \pubauthors{Daniel Ritchie, Anna Thomas, Pat Hanrahan, Noah D. Goodman.}
-\pubvenue{NIPS 2016}.
+\pubvenue{Conference on Neural Information Processing Systems (NIPS) 2016}.
 
 \pubtitle{C3: Lightweight Incrementalized MCMC for Probabilistic Programs using Continuations and Callsite Caching}. 
 \pubauthors{Daniel Ritchie, Andreas Stuhlm\"uller, Noah D. Goodman.}
-\pubvenue{AISTATS 2016}.
+\pubvenue{International Conference on Artificial Intelligence and Statistics (AISTATS) 2016}.
 
 \pubtitle{Controlling Procedural Modeling Programs with Stochastically-Ordered Sequential Monte Carlo}. 
 \pubauthors{Daniel Ritchie, Ben Mildenhall, Noah D. Goodman, and Pat Hanrahan.}
-\pubvenue{SIGGRAPH 2015}.
+\pubvenue{ACM Transactions on Graphics (Proceedings of SIGGRAPH) 2015}.
 
 \pubtitle{Generating Design Suggestions under Tight Constraints with Gradient-based Probabilistic Programming}. 
 \pubauthors{Daniel Ritchie, Sharon Lin, Noah D. Goodman, and Pat Hanrahan.}
-\pubvenue{Eurographics 2015}. \pubaward{Best Paper Honorable Mention}.
+\pubvenue{Proceedings of Eurographics 2015}. \pubaward{Best Paper Honorable Mention}.
 
 \pubtitle{Quicksand: A Lightweight Embedding of Probabilistic Programming for Procedural Modeling and Design}. 
 \pubauthors{Daniel Ritchie.}
@@ -213,27 +234,27 @@ Conferred May 2010
 
 \pubtitle{First-class Runtime Generation of High-performance Types using Exotypes}. 
 \pubauthors{Zach Devito, Daniel Ritchie, Matthew Fisher, Alex Aiken, and Pat Hanrahan.}
-\pubvenue{PLDI 2014}.
+\pubvenue{Programming Language Design and Implementation (PLDI) 2014}.
 
 \pubtitle{Probabilistic Color-by-Numbers: Suggesting Pattern Colorizations Using Factor Graphs}. 
 \pubauthors{Sharon Lin, Daniel Ritchie, Matthew Fisher, and Pat Hanrahan.}
-\pubvenue{SIGGRAPH 2013}.
+\pubvenue{ACM Transactions on Graphics (Proceedings of SIGGRAPH) 2013}.
 
 \pubtitle{Example-based Synthesis of 3D Object Arrangements}. 
 \pubauthors{Matthew Fisher, Daniel Ritchie, Manolis Savva, Thomas Funkhouser, and Pat Hanrahan.}
-\pubvenue{SIGGRAPH Asia 2012}.
+\pubvenue{ACM Transactions on Graphics (Proceedings of SIGGRAPH Asia) 2012}.
 
 \textbf{d.tour: Style-based Exploration of Design Example Galleries}.
 \pubauthors{Daniel Ritchie, Ankita Arvind Kejriwal, and Scott R. Klemmer.}
-\pubvenue{UIST 2011}.
+\pubvenue{ACM Symposium on User Interface Software and Technology (UIST) 2011}.
 
 \pubtitle{Dynamic Local Remeshing for Elastoplastic Simulation}. 
 \pubauthors{Martin Wicke, Daniel Ritchie, Bryan M. Klingner, Sebastian Burke, Jonathan R. Shewchuk, and James F. O'Brien.}
-\pubvenue{SIGGRAPH 2010}.
+\pubvenue{ACM Transactions on Graphics (Proceedings of SIGGRAPH) 2010}.
 
 \pubtitle{Interactive Simulation of Surgical Needle Insertion and Steering}. 
 \pubauthors{Nuttapong Chentanez, Ron Alterovitz, Daniel Ritchie, Lita Cho, Kris K. Hauser, Ken Goldberg, Jonathan R. Shewchuk, and James F. O'Brien.}
-\pubvenue{SIGGRAPH 2009}. 
+\pubvenue{ACM Transactions on Graphics (Proceedings of SIGGRAPH) 2009}. 
 
 
 \section {TECHNICAL\\REPORTS}
@@ -436,11 +457,16 @@ Conferred May 2010
 }
 
 \workshop
+{Learning to Generate 3D Shapes and Scenes}
+{Manyi Li, Zhenpei Yang, Angel X. Chang, Siddhartha Chaudhuri, Daniel Ritchie, Manolis Savva}
+{CVPR 2021 Workshop}
+{June 2021}
+
+\workshop
 {Synthetic 3D Scene Datasets: Needs \& Opportunities}
 {Daniel Ritchie, Angel Chang, Manolis Savva}
 {SIGGRAPH 2020 Birds of a Feather}
 {August 2020}
-
 
 \workshop
 {Learning 3D Generative Models}
@@ -632,7 +658,7 @@ Conferred May 2010
 {Theresa Barton}
 {Brown CS ScM}
 {2021}
-{}
+{The New York Times}
 
 \alumni
 {Naveen Srinivasan}
